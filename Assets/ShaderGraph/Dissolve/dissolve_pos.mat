@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: dissolve
-  m_Shader: {fileID: 4800000, guid: c26355a25e0a62046b1aeb95fa9508c7, type: 3}
+  m_Name: dissolve_pos
+  m_Shader: {fileID: 4800000, guid: ff863d8d8ba6c9b42b545eeda411f8b5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,7 +20,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - Vector1_46C578D7: 0.018
     - Vector1_7995392: 0.02
-    - Vector1_D5B4FF43: 0.3
+    - Vector1_D5B4FF43: 0.07
     m_Colors:
-    - Color_A5E7E372: {r: 0, g: 0.3137255, b: 11.984314, a: 1}
+    - Color_58A5F354: {r: 1, g: 0.975763, b: 0, a: 0}
+    - Color_A5E7E372: {r: 0, g: 0.3137255, b: 4, a: 0}
