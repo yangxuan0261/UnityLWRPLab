@@ -2,15 +2,15 @@ Shader "test/ForceField_2"
 {
 	Properties
 	{
-		_Color("Color", Color) = (0,0,0,0)
-		_RimStrength("RimStrength",Range(0, 10)) = 2
-		_IntersectPower("IntersectPower", Range(0, 3)) = 2
+		_Offset("Offset", Range(0, 3)) = 2
+		_FresnelPower("FresnelPower",Range(0, 10)) = 2
+		_MainColor("MainColor", Color) = (0,0,0,0)
 	}
 
 	SubShader
 	{
 		ZWrite Off
-		Cull Off
+		// Cull Off
 		Blend SrcAlpha OneMinusSrcAlpha
 
 		Tags
@@ -42,8 +42,9 @@ Shader "test/ForceField_2"
 				float3 viewDir : TEXCOORD3;
 			};
 
-			float _RimStrength;
-			float _IntersectPower;
+			float _FresnelPower;
+			float _Offset;
+			fixed4 _MainColor;
 
 			sampler2D _CameraDepthTexture;
 
@@ -58,7 +59,6 @@ Shader "test/ForceField_2"
 				return o;
 			}
 
-			fixed4 _Color;
 
 
 			fixed4 frag(v2f i) : SV_Target
@@ -66,19 +66,16 @@ Shader "test/ForceField_2"
 				//获取已有的深度信息,此时的深度图里没有力场的信息
 				//判断相交
 				float sceneZ = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(i.screenPos)));
-				float partZ = i.screenPos.z;
+				float partZ = i.screenPos.w - _Offset;
 
-				float diff = sceneZ - partZ;
-				float intersect = (1 - diff) * _IntersectPower;
+				float intersect = 1 - (sceneZ - partZ);
 
 				//圆环
-				float rim = 1 - abs(dot(i.normal, normalize(i.viewDir))) * _RimStrength;
-				float glow = max(intersect, rim);
-				float dtVal = smoothstep(0, 1, intersect);
+				float rim = pow((1.0 - saturate(dot(normalize(i.normal), normalize(i.viewDir)))), _FresnelPower);
+				float smoothVal = smoothstep(0, 1, intersect);
 
-				fixed4 col = _Color;
-				col.a = dtVal + rim;
-				return col;
+				_MainColor.a = smoothVal + rim;
+				return _MainColor;
 			}
 
 			ENDCG
