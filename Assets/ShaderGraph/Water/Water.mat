@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Water
+  m_Shader: {fileID: 4800000, guid: 305e66ba6d08d5a46b9fa367b9ab6a7e, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - Vector1_15D3EAF1: 1
+    - Vector1_87A434C: 0.392
+    - Vector1_8A059C7F: 4
+    - Vector1_9DEEADB8: 7.8
+    - Vector1_E892D12A: 0.841
+    m_Colors:
+    - Color_68A0AC65: {r: 0, g: 0.5458797, b: 0.8773585, a: 1}
+    - Color_D14E9A70: {r: 0.7877358, g: 0.9194534, b: 1, a: 1}
